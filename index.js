@@ -43,8 +43,7 @@ function curveScore(score, additionalPoints = 10) {
 
 // transformer will be a callback function.
 function transformScores(scores, transformer) {
-  // Developer's Note: toString() does its best to actually show what something is.
-  // console.log(transformer.toString());
+console.log(`Transformer function is: ${transformer.toString()}`);
 
   // return scores.map(function(score) {
   //  return transformer(score);
@@ -53,6 +52,8 @@ function transformScores(scores, transformer) {
   return scores.map(score => transformer(score));
 }
 
-transformScores(randomTestScores, filterScore);
-
-// console.log(transformScores(randomTestScores, filterScore));
+// TODO: Filter out the `undefined's.
+const results = transformScores(randomTestScores, filterScore).filter(
+  score => score
+);
+console.log(`Results: ${results}`);
