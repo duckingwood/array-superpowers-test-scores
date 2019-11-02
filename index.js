@@ -24,9 +24,6 @@ const randomTestScores = Array.From({ lenght: 50 }, () =>
    }
  }
 
-console.log(filterScore(50));
-console.log(filterScore(70));
-
 function assignLetterGrade(score) {
   if (score >= 90) {
     return "A";
@@ -40,12 +37,22 @@ function assignLetterGrade(score) {
   return "F";
 }
 
-console.log(filterScore(95));
-console.log(filterScore(85));
-console.log(filterScore(75));
-
 function curveScore(score, additionalPoints = 10) {
   return score + additionalPoints; 
 }
 
-// console.log(curveScore(75));
+// transformer will be a callback function.
+function transformScores(scores, transformer) {
+  // Developer's Note: toString() does its best to actually show what something is.
+  // console.log(transformer.toString());
+
+  // return scores.map(function(score) {
+  //  return transformer(score);
+  // }); (long hand of line 52)
+
+  return scores.map(score => transformer(score));
+}
+
+transformScores(randomTestScores, filterScore);
+
+// console.log(transformScores(randomTestScores, filterScore));
