@@ -61,7 +61,20 @@ function getAvg(scores) {
   return scores.reduce((total, score) => (total += score)) / score.length;
 }
 
-const results = getAvg(randomTestScores);
+function tallyLetterGrades(scores) {
+  return transformScores(scores, assignLetterGrade).reduce(
+  (tally, letterGrade) => {
+    console.log("tally is: ", tally);
+    tally += letterGrade;
+    return tally;
+    // TODO: If tally has a key that is the same as the current letterGrade, add 1 to it's total.
+    // TODO: If the key doesn't exist in 'tally', create it and set it equal to 1
+  }, 
+  {}
+  );
+}
+
+const results = tallyLetterGrades(randomTestScores);
+// {A: 10, B: 5, C: 25 ... }
 
 console.log(`Results: ${results}`);
-
