@@ -11,18 +11,19 @@ const randomTestScores = Array.From({ length: 500 }, () =>
     
 // Developer's Note: The real work for applying Array Superpowers starts below here!
 /**
- * TODO 1. Filter out all scores below a certain threshold
+ * //TODO// 
+ * 1. Filter out all scores below a certain threshold
  * 2. Get the average score
  * 3. Get Letter grades for the score.
  * 4. Curve the scores.
  * 5. Tally the results based on letter grade with or without a curve.
  */
 
- function filterScore(score, threshold = 60) {
+function filterScore(score, threshold = 60) {
    if (score < threshold) {
      return score;
    }
- }
+}
 
 function assignLetterGrade(score) {
   if (score >= 90) {
@@ -63,18 +64,19 @@ function getAvg(scores) {
 
 function tallyLetterGrades(scores) {
   return transformScores(scores, assignLetterGrade).reduce(
-  (tally, letterGrade) => {
-    console.log("tally is: ", tally);
-    tally += letterGrade;
-    return tally;
-    // TODO: If tally has a key that is the same as the current letterGrade, add 1 to it's total.
-    // TODO: If the key doesn't exist in 'tally', create it and set it equal to 1
-  }, 
-  {}
+    (tally, letterGrade) => {
+      if (letterGrade in tally) {
+        // add 1 to the current value associated with this 'letterGrade in 'tally.;
+        tally[letterGrade] += 1;
+      } else {
+        tally[letterGrade] = 1;
+      }
+      return tally;
+    }, 
+    {}
   );
 }
 
 const results = tallyLetterGrades(randomTestScores);
-// {A: 10, B: 5, C: 25 ... }
 
-console.log(`Results: ${results}`);
+console.log(results);
